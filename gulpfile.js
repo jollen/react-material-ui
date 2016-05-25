@@ -25,6 +25,7 @@ var browserSync = require("browser-sync");
 var babel = require('gulp-babel');
 var react = require('gulp-react');
 var browserify = require('gulp-browserify');
+var runSequence = require('run-sequence');
 
 // Convert JSX and compile ES2015 to JavaScript
 gulp.task('build', function () {
@@ -44,9 +45,15 @@ gulp.task('browserify', function () {
       .pipe(gulp.dest('dist'));
 });
 
+gulp.task('compile', function(done) {
+  runSequence('build', 'browserify', function() {
+    done();
+  });
+});
+
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(['src/**/*.jsx'], ['build', 'browserify']);
+    gulp.watch(['src/**/*.jsx'], ['compile']);
 });
 
 // Default Task
