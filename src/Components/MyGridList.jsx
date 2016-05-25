@@ -10,31 +10,46 @@ import { render } from 'react-dom';
  */ 
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import $ from 'jquery';
 
 export class MyGridList extends Component {
-  render() {
-    return (
-        <GridList
-        >
-            <GridTile
-                key="0"
-                title="今天誰最美"
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            issues: []
+        };
+    }
+
+    componentDidMount() {
+        $.get(this.props.source, function (result) {
+            this.setState({
+                issues: result
+            });
+        }.bind(this));
+    }
+
+    render() {
+        return (
+            <GridList
             >
-                <img src="https://placeimg.com/320/200/tech?0" />
-            </GridTile>
-            <GridTile
-                key="1"
-                title="今天誰最美"
-            >
-                <img src="https://placeimg.com/320/200/tech?1" />
-            </GridTile>
-            <GridTile
-                key="2"
-                title="今天誰最美"
-            >
-                <img src="https://placeimg.com/320/200/tech?2" />
-            </GridTile>                        
-        </GridList>
-    );
-  }
+            {this.state.issues.map((tile) => (
+                <GridTile
+                  key={tile.id}
+                  title={tile.title}
+                  subtitle={<span>by <b>{tile.user.login}</b></span>}
+                  actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                >
+                  <img src={'https://placeimg.com/320/200/tech?' + tile.id } />
+                </GridTile>
+            ))}                                  
+            </GridList>
+        );
+    }
+}
+
+MyGridList.defaultProps = {
+
 }
