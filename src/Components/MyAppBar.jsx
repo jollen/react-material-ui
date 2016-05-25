@@ -19,7 +19,7 @@ import MenuItem from 'material-ui/MenuItem';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-const MyAppBar = () => (
+export const MyAppBar = () => (
     <AppBar 
     	iconElementRight={
     		<IconMenu
@@ -32,5 +32,3 @@ const MyAppBar = () => (
     	}
     	title="App" />
 );
-
-export default MyAppBar

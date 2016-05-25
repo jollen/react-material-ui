@@ -9,14 +9,17 @@ import { render } from 'react-dom';
  */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MyAppBar from './Components/MyAppBar';
+import { MyAppBar } from './Components/MyAppBar';
+import { MyGridList } from './Components/MyGridList';
 
 const muiTheme = getMuiTheme();
 
 const App = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
-      <MyAppBar />
-    </MuiThemeProvider>		
+    	<div>
+			<MyGridList cellHeight={200} />	
+		</div>
+    </MuiThemeProvider>	
 );
 
 render(
