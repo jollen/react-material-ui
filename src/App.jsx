@@ -19,7 +19,7 @@ const App = () => (
     	<div>
 			<MyGridList 
 				source="https://api.github.com/repos/jollen/blog/issues"
-				cellHeight={200} />	
+				cellHeight="200" />	
 		</div>
     </MuiThemeProvider>	
 );
