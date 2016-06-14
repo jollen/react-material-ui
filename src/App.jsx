@@ -17,6 +17,7 @@ const muiTheme = getMuiTheme();
 const App = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
     	<div>
+    		<MyAppBar />
 			<MyGridList 
 				source="https://api.github.com/repos/jollen/blog/issues"
 				cellHeight="200" />	

@@ -46672,7 +46672,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var muiTheme = (0, _getMuiTheme2.default)();
 
 var App = function App() {
-  return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: muiTheme }, _react2.default.createElement("div", null, _react2.default.createElement(_MyGridList.MyGridList, {
+  return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: muiTheme }, _react2.default.createElement("div", null, _react2.default.createElement(_MyAppBar.MyAppBar, null), _react2.default.createElement(_MyGridList.MyGridList, {
     source: "https://api.github.com/repos/jollen/blog/issues",
     cellHeight: "200" })));
 };
