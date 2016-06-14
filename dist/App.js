@@ -46641,6 +46641,72 @@ MyGridList.defaultProps = {};
 },{"jquery":2,"material-ui/GridList":9,"material-ui/IconButton":11,"material-ui/Subheader":25,"material-ui/svg-icons/toggle/star-border":148,"react":334,"react-dom":159}],337:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.MyPaper = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _Paper = require('material-ui/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 引入 React 程式庫
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+/*
+ * 引入 Material UI 元件
+ */
+
+
+var MyPaper = exports.MyPaper = function (_Component) {
+    _inherits(MyPaper, _Component);
+
+    function MyPaper(props, context) {
+        _classCallCheck(this, MyPaper);
+
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MyPaper).call(this, props, context));
+
+        _this.state = {
+            issues: []
+        };
+        return _this;
+    }
+
+    _createClass(MyPaper, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(_Paper2.default, {
+                zDepth: 1
+            }, "Hello Paper");
+        }
+    }]);
+
+    return MyPaper;
+}(_react.Component);
+
+MyPaper.defaultProps = {};
+},{"material-ui/Paper":21,"react":334,"react-dom":159}],338:[function(require,module,exports){
+'use strict';
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -46659,7 +46725,11 @@ var _MyAppBar = require('./Components/MyAppBar');
 
 var _MyGridList = require('./Components/MyGridList');
 
+var _MyPaper = require('./Components/MyPaper');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var muiTheme = (0, _getMuiTheme2.default)();
 
 /*
  * 引入 React Material UI 元件程式庫
@@ -46669,13 +46739,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 
-var muiTheme = (0, _getMuiTheme2.default)();
-
 var App = function App() {
-  return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: muiTheme }, _react2.default.createElement("div", null, _react2.default.createElement(_MyAppBar.MyAppBar, null), _react2.default.createElement(_MyGridList.MyGridList, {
+  return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: muiTheme }, _react2.default.createElement("div", null, _react2.default.createElement(_MyAppBar.MyAppBar, null), _react2.default.createElement(_MyPaper.MyPaper, null), _react2.default.createElement(_MyGridList.MyGridList, {
     source: "https://api.github.com/repos/jollen/blog/issues",
     cellHeight: "200" })));
 };
 
 (0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('content'));
-},{"./Components/MyAppBar":335,"./Components/MyGridList":336,"material-ui/styles/MuiThemeProvider":135,"material-ui/styles/getMuiTheme":138,"react":334,"react-dom":159}]},{},[337])
+},{"./Components/MyAppBar":335,"./Components/MyGridList":336,"./Components/MyPaper":337,"material-ui/styles/MuiThemeProvider":135,"material-ui/styles/getMuiTheme":138,"react":334,"react-dom":159}]},{},[338])

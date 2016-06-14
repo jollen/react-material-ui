@@ -24,9 +24,11 @@ export class MyPaper extends Component {
 
     render() {
         return (
-            <GridList
-            >                              
-            </GridList>
+            <Paper
+                zDepth={1}
+            >                  
+                Hello Paper            
+            </Paper>
         );
     }
 }
