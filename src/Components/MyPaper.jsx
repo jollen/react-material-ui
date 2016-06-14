@@ -10,16 +10,26 @@ import { render } from 'react-dom';
  */ 
 import Paper from 'material-ui/Paper';
 
+/*
+ * 引入 jQuery 程式庫
+ */
+import $ from 'jquery';
+
 export class MyPaper extends Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            issues: []
+            body: ''
         };
     }
 
     componentDidMount() {
+        $(window).bind('postUpdate', function(event, title, body) {
+            this.setState({
+                body: body
+            });
+        }.bind(this));
     }
 
     render() {
@@ -27,12 +37,11 @@ export class MyPaper extends Component {
             <Paper
                 zDepth={1}
             >                  
-                Hello Paper            
+                {this.state.body}       
             </Paper>
         );
     }
 }
 
 MyPaper.defaultProps = {
-
 }

@@ -46608,6 +46608,8 @@ var MyGridList = exports.MyGridList = function (_Component) {
         _this.state = {
             issues: []
         };
+
+        _this._handleClick = _this._handleClick.bind(_this);
         return _this;
     }
 
@@ -46621,11 +46623,20 @@ var MyGridList = exports.MyGridList = function (_Component) {
             }.bind(this));
         }
     }, {
+        key: '_handleClick',
+        value: function _handleClick(tile) {
+            this.props.handleClick(tile.title, tile.body);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(_GridList.GridList, null, this.state.issues.map(function (tile) {
+                var boundClick = _this2._handleClick.bind(_this2, tile);
                 return _react2.default.createElement(_GridList.GridTile, {
                     key: tile.id,
+                    onClick: boundClick,
                     title: tile.title,
                     subtitle: _react2.default.createElement("span", null, "by ", _react2.default.createElement("b", null, tile.user.login)),
                     actionIcon: _react2.default.createElement(_IconButton2.default, null, _react2.default.createElement(_starBorder2.default, { color: "white" }))
@@ -46658,6 +46669,10 @@ var _Paper = require('material-ui/Paper');
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46674,6 +46689,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  */
 
 
+/*
+ * 引入 jQuery 程式庫
+ */
+
+
 var MyPaper = exports.MyPaper = function (_Component) {
     _inherits(MyPaper, _Component);
 
@@ -46683,20 +46703,26 @@ var MyPaper = exports.MyPaper = function (_Component) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MyPaper).call(this, props, context));
 
         _this.state = {
-            issues: []
+            body: ''
         };
         return _this;
     }
 
     _createClass(MyPaper, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            (0, _jquery2.default)(window).bind('postUpdate', function (event, title, body) {
+                this.setState({
+                    body: body
+                });
+            }.bind(this));
+        }
     }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(_Paper2.default, {
                 zDepth: 1
-            }, "Hello Paper");
+            }, this.state.body);
         }
     }]);
 
@@ -46704,7 +46730,7 @@ var MyPaper = exports.MyPaper = function (_Component) {
 }(_react.Component);
 
 MyPaper.defaultProps = {};
-},{"material-ui/Paper":21,"react":334,"react-dom":159}],338:[function(require,module,exports){
+},{"jquery":2,"material-ui/Paper":21,"react":334,"react-dom":159}],338:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -46727,9 +46753,18 @@ var _MyGridList = require('./Components/MyGridList');
 
 var _MyPaper = require('./Components/MyPaper');
 
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var muiTheme = (0, _getMuiTheme2.default)();
+
+/*
+ * 引入 jQuery 程式庫
+ */
+
 
 /*
  * 引入 React Material UI 元件程式庫
@@ -46739,11 +46774,19 @@ var muiTheme = (0, _getMuiTheme2.default)();
  */
 
 
+/*
+ * 自製的 Global Event System
+ */
+var handleClick = function handleClick(title, body) {
+  (0, _jquery2.default)(window).trigger('postUpdate', [title, body]);
+};
+
 var App = function App() {
   return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: muiTheme }, _react2.default.createElement("div", null, _react2.default.createElement(_MyAppBar.MyAppBar, null), _react2.default.createElement(_MyPaper.MyPaper, null), _react2.default.createElement(_MyGridList.MyGridList, {
+    handleClick: handleClick,
     source: "https://api.github.com/repos/jollen/blog/issues",
     cellHeight: "200" })));
 };
 
 (0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('content'));
-},{"./Components/MyAppBar":335,"./Components/MyGridList":336,"./Components/MyPaper":337,"material-ui/styles/MuiThemeProvider":135,"material-ui/styles/getMuiTheme":138,"react":334,"react-dom":159}]},{},[338])
+},{"./Components/MyAppBar":335,"./Components/MyGridList":336,"./Components/MyPaper":337,"jquery":2,"material-ui/styles/MuiThemeProvider":135,"material-ui/styles/getMuiTheme":138,"react":334,"react-dom":159}]},{},[338])
