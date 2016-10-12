@@ -21,6 +21,16 @@ const muiTheme = getMuiTheme();
 import $ from 'jquery';
 
 /*
+ * Custom styles
+ */
+const styles = {
+  container: {
+    textAlign: 'center',
+    paddingTop: 0,
+  },
+};
+
+/*
  * 自製的 Global Event System
  */
 const handleClick = (title, body) => {
@@ -29,7 +39,7 @@ const handleClick = (title, body) => {
 
 const App = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
-    	<div>
+    	<div style={styles.container}>
     		<MyAppBar />
     		<MyPaper />
 			<MyGridList 
